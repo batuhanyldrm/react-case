@@ -16,3 +16,14 @@ export const getUser = async () => {
     })
     return resp.status === 200 ? resp : false
 }
+
+export const putUser = async ({id, name, email, gender, status}) => {
+    const resp = await axios.put(`https://gorest.co.in/public/v2/users${id}`, {
+        name,
+        email,
+        gender,
+        status,
+    })
+
+    return resp.status === 200 ? resp : false
+}
