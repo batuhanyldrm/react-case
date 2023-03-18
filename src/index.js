@@ -1,13 +1,18 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import configureStore from './components/reducers/store';
+import RouterPage from './components/common/RouterPage';
+
+const store = configureStore();
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+     <Provider store={store}>
+      <RouterPage/>
+    </Provider>
   </React.StrictMode>
 );
 
