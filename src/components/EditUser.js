@@ -49,7 +49,6 @@ const EditUser = (props) => {
             status: status,
         }
         try {
-            localStorage.getItem(name.value);
             await putUser(data).then(() => updateUser(data))
             handleClose()
         } catch (error) {
@@ -121,7 +120,7 @@ const EditUser = (props) => {
                 <Button onClick={handleClose} autoFocus>
                     Close
                 </Button>
-                <Button onClick={() => handleEditUser()} autoFocus>
+                <Button onClick={() => handleEditUser(user.id)} autoFocus>
                     Edit
                 </Button>
             </Box>

@@ -27,7 +27,7 @@ const style = {
     close:{
         display:"flex",
         justifyContent:"end"
-    }
+    },
   };
 
 const UserListItem = (props) => {
@@ -43,6 +43,10 @@ const UserListItem = (props) => {
     }
 
     const handleDeleteModalClose = () => {
+        setDeleteModal(false)
+    }
+
+    const handleDeleteUser = () => {
         removeUser(user.id)
         setDeleteModal(false)
     }
@@ -62,11 +66,13 @@ const UserListItem = (props) => {
         />
         <div /* style={{display:"flex", justifyContent:"flex-start"}} */>
         <Card sx={{ maxWidth: 275 }} style={{marginBottom:"10px"}}>
-            <IconButton style={{display:"flex", justifyContent:"end"}}
-            onClick={() => setDeleteModal(true)}
-            >
-                <DeleteIcon/>
-            </IconButton>
+            <div style={{display:"flex", justifyContent:"end", marginRight:"15px"}}>
+                <IconButton
+                onClick={() => setDeleteModal(true)}
+                >
+                    <DeleteIcon/>
+                </IconButton>
+            </div>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
                     {user.name}
@@ -102,7 +108,7 @@ const UserListItem = (props) => {
                 <Button onClick={handleDeleteModalClose} autoFocus>
                     Close
                 </Button>
-                <Button onClick={() => handleDeleteModalClose()} autoFocus>
+                <Button onClick={() => handleDeleteUser()} autoFocus>
                     Delete
                 </Button>
             </Box>
