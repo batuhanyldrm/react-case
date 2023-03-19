@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 
 const style = {
     root:{
-        position: 'absolute',
+        //position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
@@ -65,55 +65,55 @@ const UserListItem = (props) => {
             users={users}
         />
         <div /* style={{display:"flex", justifyContent:"flex-start"}} */>
-        <Card sx={{ maxWidth: 275 }} style={{marginBottom:"10px"}}>
-            <div style={{display:"flex", justifyContent:"end", marginRight:"15px"}}>
-                <IconButton
-                onClick={() => setDeleteModal(true)}
-                >
-                    <DeleteIcon/>
-                </IconButton>
-            </div>
-            <CardContent>
-                <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
-                    {user.name}
-                </Typography>
-                <Typography sx={{ fontSize: 14 }} component="div">
-                    {user.email}
-                </Typography>
-                <Typography sx={{ mb: 1.5 }} color="text.secondary">
-                    {user.gender}
-                </Typography>
-                <Typography variant="body2">
-                    {user.status}
-                </Typography>
-            </CardContent>
-            <CardActions style={{display:"flex", justifyContent:"end"}}>
-                <Button size="small" onClick={() => handleEdit(user.id)}>Edit</Button>
-            </CardActions>
-        </Card>
-        <Modal
-        open={deleteModal}
-        onClose={handleDeleteModalClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style.root}>
-          <Typography id="modal-modal-title" variant="h6" component="h2">
-            Delete User
-          </Typography>
-          <Typography id="modal-modal-description" sx={{ mt: 2 }}>
-            Silmek istediğinize emin misiniz?
-          </Typography>
-          <Box style={style.close}>
-                <Button onClick={handleDeleteModalClose} autoFocus>
-                    Close
-                </Button>
-                <Button onClick={() => handleDeleteUser()} autoFocus>
-                    Delete
-                </Button>
-            </Box>
-        </Box>
-      </Modal>
+            <Card sx={{ maxWidth: 275 }} style={{marginBottom:"10px"}}>
+                <div style={{display:"flex", justifyContent:"end", marginRight:"15px"}}>
+                    <IconButton
+                    onClick={() => setDeleteModal(true)}
+                    >
+                        <DeleteIcon/>
+                    </IconButton>
+                </div>
+                <CardContent>
+                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                        {user.name}
+                    </Typography>
+                    <Typography sx={{ fontSize: 14 }} component="div">
+                        {user.email}
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                        {user.gender}
+                    </Typography>
+                    <Typography variant="body2">
+                        {user.status}
+                    </Typography>
+                </CardContent>
+                <CardActions style={{display:"flex", justifyContent:"end"}}>
+                    <Button size="small" onClick={() => handleEdit(user.id)}>Edit</Button>
+                </CardActions>
+            </Card>
+            <Modal
+            open={deleteModal}
+            onClose={handleDeleteModalClose}
+            aria-labelledby="modal-modal-title"
+            aria-describedby="modal-modal-description"
+            >
+                <Box sx={style.root}>
+                    <Typography id="modal-modal-title" variant="h6" component="h2">
+                        Delete User
+                    </Typography>
+                    <Typography id="modal-modal-description" sx={{ mt: 2 }}>
+                        Silmek istediğinize emin misiniz?
+                    </Typography>
+                <Box style={style.close}>
+                        <Button onClick={handleDeleteModalClose} autoFocus>
+                            Close
+                        </Button>
+                        <Button onClick={() => handleDeleteUser()} autoFocus>
+                            Delete
+                        </Button>
+                    </Box>
+                </Box>
+            </Modal>
         </div>
     </>
   )
