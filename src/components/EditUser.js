@@ -17,6 +17,8 @@ const EditUser = (props) => {
     const [gender, setGender] = useState(user.gender)
     const [status, setstatus] = useState("")
 
+    const dublicate = []
+
     const style = {
         root:{
             position: 'absolute',
@@ -71,7 +73,11 @@ const EditUser = (props) => {
                         //onChange={handleChange}
                         >
                             {users.users && users.users.map((user) => {
-                               return <MenuItem key={user.gender} value={user.gender}  onClick={() => setGender(user.gender)}>{user.gender}</MenuItem>
+                                if (dublicate.includes(user.gender)) {
+                                    return null;
+                                }
+                                dublicate.push(user.gender);
+                                return <MenuItem key={user.gender} value={user.gender}  onClick={() => setGender(user.gender)}>{user.gender}</MenuItem>
                             })}
                         </Select>
                     </FormControl>

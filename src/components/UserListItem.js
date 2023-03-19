@@ -30,6 +30,7 @@ const UserListItem = (props) => {
             user={user}
             users={users}
         />
+        <div /* style={{display:"flex", justifyContent:"flex-start"}} */>
         <Card sx={{ maxWidth: 275 }} style={{marginBottom:"10px"}}>
             <CardContent>
                 <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
@@ -49,6 +50,7 @@ const UserListItem = (props) => {
                 <Button size="small" onClick={() => handleEdit(user.id)}>Edit</Button>
             </CardActions>
         </Card>
+        </div>
     </>
   )
 }
