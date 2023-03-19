@@ -1,29 +1,48 @@
 import axios from "axios";
 
-const bearerToken = "Bearer 44a0309654a3f3e75a10cb5805f8ef22acbfbee387c733abf9a89f1dab613918"
+//const bearerToken = "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
 
 export const loginUser = async ({name,password}) => {
     const resp = await axios.post("https://gorest.co.in/consumer/login", {
         name,
         password
-    })
-    return resp.status === 201 ? resp : false
+  }, {
+    headers: {
+        Authorization: "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
+    }
+  })
+  return resp.status === 201 ? resp : false
 }
 
 export const getUser = async () => {
     const resp = await axios.get("https://gorest.co.in/public/v2/users", {
-            headers: { Authorization: bearerToken }
-    })
+        headers: {
+            Authorization: "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
+        }
+      })
     return resp.status === 200 ? resp : false
 }
 
-export const putUser = async ({id, name, email, gender, status}) => {
-    const resp = await axios.put(`https://gorest.co.in/public/v2/users${id}`, {
-        name,
-        email,
-        gender,
-        status,
-    })
+export const putUser = async (data) => {
+    const resp = await axios.patch(`https://gorest.co.in/public/v2/users/${data.id}`,{
+        name: data.name,
+        email: data.email,
+        gender: data.gender,
+        status: data.status,
+    }, {
+        headers: {
+            Authorization: "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
+        }
+      })
 
     return resp.status === 200 ? resp : false
+}
+
+export const deleteUser = async (id) => {
+    const resp = await axios.delete(`https://gorest.co.in/public/v2/users/${id}`, {
+        headers: {
+            Authorization: "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
+        }
+      })
+      return resp.status === 204 ? resp : false
 }

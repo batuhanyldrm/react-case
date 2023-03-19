@@ -1,4 +1,4 @@
-import { FETCH_USER, UPDATE_USER } from '../actions/types';
+import { DELETE_USER, FETCH_USER, UPDATE_USER } from '../actions/types';
 
 const Reducer = (state = {}, action) => {
   switch (action.type) {
@@ -15,6 +15,8 @@ const Reducer = (state = {}, action) => {
             }
         })
         return {...state, users: temp.users}
+    case DELETE_USER:
+        return {...state, users: [...state.users].filter((item) => item.id !== action.payload)}
     default:
         return state
   }
