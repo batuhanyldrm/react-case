@@ -1,4 +1,4 @@
-import { deleteUser, getUser, postUser } from "../api/userApi";
+import { deleteUser, getUser } from "../api/userApi";
 import { ADD_USER, DELETE_USER, FETCH_USER, UPDATE_USER } from "./types";
 
 export const fetchUser = () => async (

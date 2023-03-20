@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { connect } from 'react-redux';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -7,10 +8,10 @@ import Button from '@mui/material/Button';
 import DeleteIcon from '@mui/icons-material/Delete';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import EditUser from './EditUser';
 import { IconButton } from '@mui/material';
+import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
+import EditUser from './EditUser';
 import { removeUser } from './actions/userActions';
-import { connect } from 'react-redux';
 
 const style = {
     root:{
@@ -71,6 +72,11 @@ const UserListItem = (props) => {
                     onClick={() => setDeleteModal(true)}
                     >
                         <DeleteIcon/>
+                    </IconButton>
+                    <IconButton
+                        href={`/todos/${user.id}`}
+                    >
+                        <ContentPasteSearchIcon/>
                     </IconButton>
                 </div>
                 <CardContent>

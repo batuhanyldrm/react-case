@@ -89,8 +89,8 @@ const AddUser = (props) => {
                         label="Gender"
                         onChange={(e) => setGender(e.target.value)}
                         >
-                            <MenuItem value={gender} onChange={(e) => setGender(e.target.value)}>Male</MenuItem>
-                            <MenuItem value={gender} onChange={(e) => setGender(e.target.value)}>Female</MenuItem>
+                            <MenuItem value={gender} >Male</MenuItem>
+                            <MenuItem value={gender} >Female</MenuItem>
                         </Select>
                     </FormControl>
                     <FormControl  style={{ marginTop:"10px"}}>
