@@ -15,7 +15,7 @@ const TodosListItem = (props) => {
     const {fetchUserTodos, todos} = props;
 
     useEffect(() => {
-      fetchUserTodos()
+      fetchUserTodos(window.location.href.split("/")[3])
     }, [])
     
 
@@ -26,18 +26,21 @@ const TodosListItem = (props) => {
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
             <TableRow>
-                <TableCell>Table</TableCell>
+                <TableCell>Title</TableCell>
+                <TableCell>Due On</TableCell>
+                <TableCell>Status</TableCell>
             </TableRow>
             </TableHead>
             <TableBody>
-
+                {todos.todos && todos.todos.map((todo) => (
                 <TableRow
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
-                <TableCell component="th" scope="row">
-                </TableCell>
+                <TableCell component="th" scope="row">{todo.title}</TableCell>
+                <TableCell component="th" scope="row">{todo.due_on}</TableCell>
+                <TableCell component="th" scope="row">{todo.status}</TableCell>
                 </TableRow>
-
+                ))}
             </TableBody>
         </Table>
         </TableContainer>
@@ -50,8 +53,8 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-    fetchUserTodos: () => {
-        dispatch(fetchUserTodos());
+    fetchUserTodos: (id) => {
+        dispatch(fetchUserTodos(id));
     }
 })
 

@@ -74,7 +74,7 @@ const UserListItem = (props) => {
                         <DeleteIcon/>
                     </IconButton>
                     <IconButton
-                        href={`/todos/${user.id}`}
+                        href={`/${user.id}/todos`}
                     >
                         <ContentPasteSearchIcon/>
                     </IconButton>

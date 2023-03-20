@@ -10,7 +10,7 @@ const RouterPage = () => {
         <Routes>
           <Route path="/" element={<LoginPage component={LoginPage} title={"Login"} />}></Route>
           <Route path="/users" element={<UsersList component={UsersList} title={"Users"} />}></Route>
-          <Route path="/todos/:id" element={<TodosListItem component={TodosListItem} title={"Todos"} />}></Route>
+          <Route path="/:id/todos" element={<TodosListItem component={TodosListItem} title={"Todos"} />}></Route>
         </Routes>
           
     </BrowserRouter>
