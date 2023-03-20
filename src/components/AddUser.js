@@ -9,6 +9,8 @@ import Select from '@mui/material/Select';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
+import { postUser } from './api/userApi';
+import { addUser } from './actions/userActions';
 
 const style = {
     root:{
@@ -35,6 +37,21 @@ const AddUser = (props) => {
     const [email, setEmail] = useState("")
     const [gender, setGender] = useState("")
     const [status, setStatus] = useState("")
+
+    const handleAddUser = async () => {
+        const data = {
+            name: name,
+            email: email,
+            gender: gender,
+            status: status,
+        }
+        try {
+            await postUser(data).then(() => addUser(data))
+            handleClose()
+        } catch (error) {
+            console.log(error,"catch error")
+        }
+    }
 
 
   return (
@@ -93,7 +110,7 @@ const AddUser = (props) => {
                 <Button onClick={handleClose} autoFocus>
                     Close
                 </Button>
-                <Button /* onClick={() => handleEditUser(user.id)} */ autoFocus>
+                <Button onClick={() => handleAddUser()} autoFocus>
                     Add
                 </Button>
             </Box>
@@ -104,4 +121,14 @@ const AddUser = (props) => {
   )
 }
 
-export default AddUser
+const mapStateToProps = (state) => ({
+
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    addUser: (data) => {
+        dispatch(addUser(data));
+    }
+})
+
+export default connect(mapStateToProps,mapDispatchToProps) (AddUser)

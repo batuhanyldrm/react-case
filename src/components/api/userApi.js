@@ -46,3 +46,17 @@ export const deleteUser = async (id) => {
       })
       return resp.status === 204 ? resp : false
 }
+
+export const postUser = async (data) => {
+    const resp = await axios.post(`https://gorest.co.in/public/v2/users`,{
+        name: data.name,
+        email: data.email,
+        gender: data.gender,
+        status: data.status,
+    }, {
+        headers: {
+            Authorization: "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
+        }
+      })
+      return resp.status === 201 ? resp : false
+}

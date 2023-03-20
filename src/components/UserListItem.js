@@ -14,7 +14,7 @@ import { connect } from 'react-redux';
 
 const style = {
     root:{
-        //position: 'absolute',
+        position: 'absolute',
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
