@@ -69,3 +69,16 @@ export const getUserTodos = async (id) => {
       })
     return resp.status === 200 ? resp : false
 }
+
+export const postUserTodos = async (data) => {
+    const resp = await axios.post(`https://gorest.co.in/public/v2/users/${data.id}/todos`,{
+        id: data.id,
+        title: data.title,
+        status: data.status,
+    }, {
+        headers: {
+            Authorization: "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
+        }
+      })
+      return resp.status === 201 ? resp : false
+}

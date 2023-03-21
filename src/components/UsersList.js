@@ -7,6 +7,14 @@ import UserListItem from './UserListItem';
 import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 
+const style = {
+  list: {
+    marginLeft: "15px",
+    marginRight: "15px",
+    columnCount: "2"
+  }
+};
+
 const UsersList = (props) => {
 
     const{fetchUser, users} = props
@@ -31,6 +39,8 @@ const UsersList = (props) => {
       <div style={{display:"flex", justifyContent:"end"}}>
         <Button variant="contained" onClick={() => setaddUser(true)}>ADD USER</Button>
       </div>
+      <div className='row'>
+      <section style={style.list} className="col-md-6">
         {users.users && users.users.map((user, index) => (
             <UserListItem
                 key={index}
@@ -38,7 +48,10 @@ const UsersList = (props) => {
                 users={users}
             />
         ))}
+        </section>
+        </div>
         <Stack spacing={2}>
+
       <Pagination count={10} color="primary" />
     </Stack>
    </> 

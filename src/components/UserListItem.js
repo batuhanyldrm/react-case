@@ -12,6 +12,9 @@ import { IconButton } from '@mui/material';
 import ContentPasteSearchIcon from '@mui/icons-material/ContentPasteSearch';
 import EditUser from './EditUser';
 import { removeUser } from './actions/userActions';
+import MailIcon from '@mui/icons-material/Mail';
+import FaceIcon from '@mui/icons-material/Face';
+import Face3Icon from '@mui/icons-material/Face3';
 
 const style = {
     root:{
@@ -19,7 +22,7 @@ const style = {
         top: '50%',
         left: '50%',
         transform: 'translate(-50%, -50%)',
-        maxWidth: 300,
+        maxWidth: 500,
         bgcolor: 'background.paper',
         //border: '2px solid #000',
         boxShadow: 24,
@@ -29,6 +32,15 @@ const style = {
         display:"flex",
         justifyContent:"end"
     },
+    name:{
+        fontSize: 16, 
+        fontWeight: "bold", 
+        textAlign:"center"
+    },
+    icon: {
+        display:"flex",
+        justifyContent:"center",
+    }
   };
 
 const UserListItem = (props) => {
@@ -43,7 +55,7 @@ const UserListItem = (props) => {
         setOpen(true)
     }
 
-    const handleDeleteModalClose = () => {
+    const handleDeleteModalClose = () => {
         setDeleteModal(false)
     }
 
@@ -52,7 +64,7 @@ const UserListItem = (props) => {
         setDeleteModal(false)
     }
 
-    const handleClose = () => {
+    const handleClose = () => {
         setOpen(false)
     }
 
@@ -65,27 +77,26 @@ const UserListItem = (props) => {
             user={user}
             users={users}
         />
-        <div /* style={{display:"flex", justifyContent:"flex-start"}} */>
+        <div>
             <Card sx={{ maxWidth: 275 }} style={{marginBottom:"10px"}}>
                 <div style={{display:"flex", justifyContent:"end", marginRight:"15px"}}>
-                    <IconButton
-                    onClick={() => setDeleteModal(true)}
-                    >
-                        <DeleteIcon/>
-                    </IconButton>
-                    <IconButton
+                    <IconButton title='Detail'
                         href={`/${user.id}/todos`}
                     >
                         <ContentPasteSearchIcon/>
                     </IconButton>
                 </div>
                 <CardContent>
-                    <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>
+                    <div style={style.icon} >{user.gender === "male" ? < FaceIcon/> : <Face3Icon/>}</div> 
+                    <Typography style={style.name} color="black" gutterBottom>
                         {user.name}
                     </Typography>
+                    <div style={{display: "flex"}}>
+                   <MailIcon/>
                     <Typography sx={{ fontSize: 14 }} component="div">
                         {user.email}
                     </Typography>
+                    </div>
                     <Typography sx={{ mb: 1.5 }} color="text.secondary">
                         {user.gender}
                     </Typography>
@@ -93,8 +104,19 @@ const UserListItem = (props) => {
                         {user.status}
                     </Typography>
                 </CardContent>
-                <CardActions style={{display:"flex", justifyContent:"end"}}>
-                    <Button size="small" onClick={() => handleEdit(user.id)}>Edit</Button>
+                <CardActions style={{display:"flex", justifyContent:"start"}}>
+                    <Button size="small"
+                    onClick={() => handleEdit(user.id)}
+                    >
+                    Edit
+                    </Button>
+                    <div style={{display:"flex", justifyContent:"end", marginRight:"15px"}}>
+                    <IconButton title='Delete'
+                    onClick={() => setDeleteModal(true)}
+                    >
+                        <DeleteIcon/>
+                    </IconButton>
+                </div>
                 </CardActions>
             </Card>
             <Modal
@@ -125,7 +147,7 @@ const UserListItem = (props) => {
   )
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state) => ({
 
 });
 

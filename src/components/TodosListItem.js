@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -9,10 +9,17 @@ import Paper from '@mui/material/Paper';
 import { connect } from 'react-redux';
 import { fetchUserTodos } from './actions/todosActions';
 import { Button } from '@mui/material';
+import AddTodos from './AddTodos';
 
 const TodosListItem = (props) => {
 
     const {fetchUserTodos, todos} = props;
+
+    const [open, setOpen] = useState(false)
+
+    const handleClose = () => {
+        setOpen(false)
+    }
 
     useEffect(() => {
       fetchUserTodos(window.location.href.split("/")[3])
@@ -21,7 +28,16 @@ const TodosListItem = (props) => {
 
   return (
     <>
-    <Button variant='contained'>Add Todo</Button>
+        <AddTodos
+            open={open}
+            handleClose={handleClose}
+        />
+        <Button 
+            variant='contained' 
+            onClick={() => setOpen(true)}
+        >
+            Add Todo
+        </Button>
         <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
             <TableHead>
@@ -32,8 +48,8 @@ const TodosListItem = (props) => {
             </TableRow>
             </TableHead>
             <TableBody>
-                {todos.todos && todos.todos.map((todo) => (
-                <TableRow
+                {todos.todos && todos.todos.map((todo, index) => (
+                <TableRow key={index}
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                 <TableCell component="th" scope="row">{todo.title}</TableCell>
