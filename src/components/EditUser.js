@@ -40,8 +40,7 @@ const EditUser = (props) => {
 
     const options = [
         { value: "female", label: "Female" },
-        { value: "male", label: "Male" },
-        { value: "other", label: "Other" }
+        { value: "male", label: "Male" }
     ];
 
     const statusOptions = [

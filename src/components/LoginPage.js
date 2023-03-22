@@ -11,7 +11,7 @@ import FormControl from '@mui/material/FormControl';
 import { loginUser } from './api/userApi';
 
 
-const LoginPage = (props) => {
+function LoginPage(props){
     const {} = props
 
     const [showPassword, setShowPassword] = useState(false);
@@ -39,10 +39,9 @@ const LoginPage = (props) => {
             console.log(error,"catch error")
         }
     }
-    
 
   return (
-    <div style={{display:"flex", justifyContent:"center"}}>
+    <div style={{display:"flex", justifyContent:"center", marginTop:"15%"}}>
         <div style={{display:"block"}}>
 
         <div style={{marginBottom:"10px"}}>

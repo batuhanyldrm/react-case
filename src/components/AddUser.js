@@ -28,15 +28,14 @@ const style = {
         display:"flex",
         justifyContent:"end"
     }
-  };
+};
 
 const AddUser = (props) => {
     const {open, handleClose, fetchUser, users} = props
 
     const options = [
         { value: "female", label: "Female" },
-        { value: "male", label: "Male" },
-        { value: "other", label: "Other" }
+        { value: "male", label: "Male" }
     ];
 
     const statusOptions = [
@@ -112,10 +111,11 @@ const AddUser = (props) => {
                 />
             </div>
             <div>
-                    <FormControl  style={{ marginTop:"10px"}}>
+                    <FormControl sx={{minWidth: 193, marginTop:"10px" }}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Gender</InputLabel>
                         <Select
                             value={gender}
+                            label="Gender"
                             onChange={handleGenderChange}
                         >
                             {options.map((option) => (
@@ -126,10 +126,11 @@ const AddUser = (props) => {
                         </Select>
                     </FormControl>
             </div>
-                    <FormControl  style={{ marginTop:"10px"}}>
+                    <FormControl  sx={{minWidth: 193, marginTop:"10px" }}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Status</InputLabel>
                          <Select
                             value={status}
+                            label="Status"
                             onChange={handleStatusChange}
                         >
                             {statusOptions.map((option) => (
@@ -140,12 +141,14 @@ const AddUser = (props) => {
                         </Select>
                     </FormControl>
             <Box style={style.close}>
-                <Button onClick={handleClose} autoFocus>
+                <div style={{marginTop:"5px"}}>
+                <Button style={{marginRight:"5px"}} onClick={handleClose} autoFocus>
                     Close
                 </Button>
                 <Button onClick={() => handleAddUser()} autoFocus>
                     Add
                 </Button>
+                </div>
             </Box>
         </Box>
       </Modal>

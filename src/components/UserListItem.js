@@ -35,7 +35,11 @@ const style = {
     name:{
         fontSize: 16, 
         fontWeight: "bold", 
-        textAlign:"center"
+        textAlign:"center",
+        margin:"5px",
+        overflow:"hidden",
+        textOverflow:"ellipsis",
+        whiteSpace:"nowrap"
     },
     icon: {
         display:"flex",
@@ -78,7 +82,8 @@ const UserListItem = (props) => {
             users={users}
         />
         <div>
-            <Card sx={{ maxWidth: 275, maxHeight: "300px" }} style={{marginBottom:"10px"}}>
+        
+            <Card sx={{ maxWidth: 300, maxHeight: "300px" }} style={{marginBottom:"10px"}}>
                 <div style={{display:"flex", justifyContent:"end", marginRight:"15px"}}>
                     <IconButton title='Detail'
                         href={`/${user.id}/todos`}
@@ -87,22 +92,24 @@ const UserListItem = (props) => {
                     </IconButton>
                 </div>
                 <CardContent>
-                    <div style={style.icon} >{user.gender === "male" ? < FaceIcon/> : <Face3Icon/>}</div> 
+                    <div style={style.icon} >{user.gender === "male" ? < FaceIcon sx={{ fontSize: 60 }}/> : <Face3Icon sx={{ fontSize: 60 }}/>}</div> 
                     <Typography style={style.name} color="black" gutterBottom>
                         {user.name}
                     </Typography>
-                    <div style={{display: "flex"}}>
-                   <MailIcon/>
-                    <Typography sx={{ fontSize: 14 }} component="div">
+                    <Typography sx={{ fontSize: 14, overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }} component="div">
                         {user.email}
                     </Typography>
-                    </div>
-                    <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                    <div style={{display: "flex", justifyContent:"center"}}>
+                    <Typography sx={{ mb: 1.5 }}>
                         {user.gender}
                     </Typography>
-                    <Typography variant="body2">
+                    <Typography sx={{ fontWeight:"italic"}}>
+                    &
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }}>
                         {user.status}
                     </Typography>
+                    </div>
                 </CardContent>
                 <CardActions style={{display:"flex", justifyContent:"start"}}>
                     <Button size="small"

@@ -11,9 +11,14 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const style = {
   list: {
-    marginLeft: "15px",
-    marginRight: "15px",
-    columnCount: "2"
+   marginLeft:"13%",
+   columnCount: "2"
+  },
+  pagination:{
+    display: "flex",
+    justifyContent:"center",
+    marginTop:"5%"
+
   }
 };
 
@@ -29,7 +34,7 @@ function UsersList (props) {
     const [lastSearched,setLastSearched] = useState("");
 
     const sliceUsers = (pageNo) => {
-      const newDisplayedUsers =  users.slice((pageNo - 1) * 4, pageNo * 4)  
+      const newDisplayedUsers =  users.slice((pageNo - 1) * 6, pageNo * 6)  
       setLastFilteredUsers(newDisplayedUsers)
     }
     const handleShownUsers = (value) => {
@@ -84,7 +89,7 @@ function UsersList (props) {
      useEffect( () => {
         if(users){
           sliceUsers(pageNumber);
-          setTotalPageNumber(Math.round(users.length / 4))
+          setTotalPageNumber(Math.round(users.length / 6))
         }
       },[users])
   return (
@@ -94,15 +99,14 @@ function UsersList (props) {
         handleClose={handleClose}
         users={users}
       />
-      <div style={{display:"flex", justifyContent:"end"}}>
-        <Button variant="contained" onClick={() => setaddUser(true)}>ADD USER</Button>
-      <TextField
+      <div style={{display:"flex", justifyContent:"space-around", margin:"15px"}}>
+        <TextField style={{maxWidth:"650px"}}
       type="text"
       value={currentSearch}
       onChange={(e) => setCurrentSearch(e.target.value)}
       onKeyPress={(e) => checkPressedEnter(e.key)}
       variant="outlined"
-      size="small"
+      fullWidth sx={{ m: 1 }}
       InputProps={{
         endAdornment: (
           <>
@@ -125,7 +129,10 @@ function UsersList (props) {
         ),
       }}
       label="Search"
-    /></div>
+    />
+    <Button variant="contained" style={{maxWidth:"200px", maxHeight:"50px", marginTop:"10px"}} onClick={() => setaddUser(true)}>ADD USER</Button>
+      
+    </div>
       <div className='row'>
       <section style={style.list} className="col-md-6">
 
@@ -150,7 +157,7 @@ function UsersList (props) {
         page={pageNumber}
         onChange={(event, value) => handleShownUsers(value)}
         count={totalPageNumber}
-        size="small"
+        size="medium"
         showFirstButton
         showLastButton
         color="primary"

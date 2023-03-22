@@ -85,10 +85,12 @@ const AddTodos = (props) => {
             label="Title" 
             variant="outlined"
         />
-                <FormControl  style={{ marginTop:"10px"}}>
-                        <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Gender</InputLabel>
-                        <Select
+            <div>
+            <FormControl  sx={{minWidth: 193, marginTop:"10px" }}>
+                        <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Status</InputLabel>
+                         <Select
                             value={status}
+                            label="Status"
                             onChange={handleStatusChange}
                         >
                             {options.map((option) => (
@@ -98,13 +100,16 @@ const AddTodos = (props) => {
                             ))}
                         </Select>
                     </FormControl>
+            </div>
         <Box style={style.close}>
+            <div style={{marginTop:"5px"}}>
             <Button onClick={handleClose} autoFocus>
                 Close
             </Button>
             <Button onClick={() => handleAddUserTodos()} autoFocus>
                 Add
             </Button>
+            </div>
         </Box>
     </Box>
   </Modal>
