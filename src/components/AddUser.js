@@ -93,20 +93,25 @@ const AddUser = (props) => {
             <Typography id="modal-modal-title" variant="h6" component="h2">
                 ADD USER
             </Typography>
-            <TextField style={{marginRight:"5px", marginTop:"10px"}}
-                id="outlined-basic" 
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                label="Name" 
-                variant="outlined"
-            />
-            <TextField style={{ marginTop:"10px"}}
-                id="outlined-basic" 
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                label="Email" 
-                variant="outlined"
-            />
+            <div>
+                <TextField style={{marginRight:"5px", marginTop:"10px"}}
+                    id="outlined-basic" 
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    label="Name" 
+                    variant="outlined"
+                />
+            </div>
+            <div>
+                <TextField style={{ marginTop:"10px"}}
+                    id="outlined-basic" 
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    label="Email" 
+                    variant="outlined"
+                />
+            </div>
+            <div>
                     <FormControl  style={{ marginTop:"10px"}}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Gender</InputLabel>
                         <Select
@@ -120,6 +125,7 @@ const AddUser = (props) => {
                             ))}
                         </Select>
                     </FormControl>
+            </div>
                     <FormControl  style={{ marginTop:"10px"}}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Status</InputLabel>
                          <Select

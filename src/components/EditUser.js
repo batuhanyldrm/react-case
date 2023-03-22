@@ -38,7 +38,16 @@ const EditUser = (props) => {
     const [gender, setGender] = useState(user.gender)
     const [status, setStatus] = useState(user.status)
 
-    const dublicate = []
+    const options = [
+        { value: "female", label: "Female" },
+        { value: "male", label: "Male" },
+        { value: "other", label: "Other" }
+    ];
+
+    const statusOptions = [
+        { value: "active", label: "active" },
+        { value: "inactive", label: "inactive" }
+    ];
 
     const handleEditUser = async () => {
         const data = {
@@ -54,6 +63,14 @@ const EditUser = (props) => {
         } catch (error) {
             console.log(error,"catch error")
         }
+    }
+
+    const handleGenderChange = (event) => {
+        setGender(event.target.value);
+    }
+
+    const handleStatusChange = (event) => {
+        setStatus(event.target.value);
     }
 
   return (
@@ -82,38 +99,32 @@ const EditUser = (props) => {
                 label="Email" 
                 variant="outlined"
             />
+                    <div>
                     <FormControl  style={{ marginTop:"10px"}}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Gender</InputLabel>
-                        <Select style={{ minWidth:"148px"}}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={gender}
-                        label="Gender"
+                        <Select
+                            value={gender}
+                            onChange={handleGenderChange}
                         >
-                            {users.users && users.users.map((user) => {
-                                if (dublicate.includes(user.gender)) {
-                                    return null;
-                                }
-                                dublicate.push(user.gender);
-                                return <MenuItem key={user.gender} value={user.gender}  onClick={() => setGender(user.gender)}>{user.gender}</MenuItem>
-                            })}
+                            {options.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
-                    <FormControl  style={{ marginTop:"10px"}}>
+            </div>
+            <FormControl  style={{ marginTop:"10px"}}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Status</InputLabel>
-                        <Select style={{ minWidth:"148px"}}
-                        labelId="demo-simple-select-label"
-                        id="demo-simple-select"
-                        value={status}
-                        label="Status"
+                         <Select
+                            value={status}
+                            onChange={handleStatusChange}
                         >
-                            {users.users && users.users.map((user) => {
-                                if (dublicate.includes(user.status)) {
-                                    return null;
-                                }
-                                dublicate.push(user.status);
-                                return <MenuItem key={user.status} value={user.status}  onClick={() => setStatus(user.status)}>{user.status}</MenuItem>
-                            })}
+                            {statusOptions.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                            ))}
                         </Select>
                     </FormControl>
             <Box style={style.close}>

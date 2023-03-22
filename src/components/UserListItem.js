@@ -78,7 +78,7 @@ const UserListItem = (props) => {
             users={users}
         />
         <div>
-            <Card sx={{ maxWidth: 275 }} style={{marginBottom:"10px"}}>
+            <Card sx={{ maxWidth: 275, maxHeight: "300px" }} style={{marginBottom:"10px"}}>
                 <div style={{display:"flex", justifyContent:"end", marginRight:"15px"}}>
                     <IconButton title='Detail'
                         href={`/${user.id}/todos`}

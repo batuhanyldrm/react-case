@@ -15,7 +15,7 @@ export const loginUser = async ({name,password}) => {
 }
 
 export const getUser = async () => {
-    const resp = await axios.get("https://gorest.co.in/public/v2/users?page=1&per_page=20", {
+    const resp = await axios.get("https://gorest.co.in/public/v2/users?page=1&per_page=50", {
         headers: {
             Authorization: "Bearer 9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc"
         }
