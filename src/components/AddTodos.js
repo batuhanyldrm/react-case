@@ -20,7 +20,6 @@ const style = {
         transform: 'translate(-50%, -50%)',
         maxWidth: 300,
         bgcolor: 'background.paper',
-        //border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     },
@@ -76,7 +75,7 @@ const AddTodos = (props) => {
   >
     <Box sx={style.root}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
-            ADD Todos
+            ADD Todo
         </Typography>
         <TextField style={{ marginTop:"10px"}}
             id="outlined-basic" 
@@ -84,6 +83,7 @@ const AddTodos = (props) => {
             onChange={(e) => setTitle(e.target.value)}
             label="Title" 
             variant="outlined"
+            error={!title}
         />
             <div>
             <FormControl  sx={{minWidth: 193, marginTop:"10px" }}>
@@ -91,6 +91,7 @@ const AddTodos = (props) => {
                          <Select
                             value={status}
                             label="Status"
+                            error={!status}
                             onChange={handleStatusChange}
                         >
                             {options.map((option) => (

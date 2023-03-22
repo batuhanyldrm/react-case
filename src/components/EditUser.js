@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { connect } from 'react-redux';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -20,7 +20,6 @@ const style = {
         transform: 'translate(-50%, -50%)',
         maxWidth: 300,
         bgcolor: 'background.paper',
-        //border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     },
@@ -48,6 +47,13 @@ const EditUser = (props) => {
         { value: "inactive", label: "inactive" }
     ];
 
+    useEffect(() => {
+        setName(user.name)
+        setEmail(user.email)
+        setGender(user.gender)
+        setStatus(user.status)
+    }, [user])
+    
     const handleEditUser = async () => {
         const data = {
             id: id,
@@ -88,21 +94,25 @@ const EditUser = (props) => {
                 id="outlined-basic" 
                 value={name}
                 onChange={(e) => setName(e.target.value)}
+                error={!name}
                 label="Name" 
                 variant="outlined"
             />
             <TextField style={{ marginTop:"10px"}}
                 id="outlined-basic" 
                 value={email}
+                error={!email}
                 onChange={(e) => setEmail(e.target.value)}
                 label="Email" 
                 variant="outlined"
             />
                     <div>
-                    <FormControl  style={{ marginTop:"10px"}}>
+                    <FormControl  sx={{minWidth: 193, marginTop:"10px" }}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Gender</InputLabel>
                         <Select
                             value={gender}
+                            label="Gender"
+                            error={!gender}
                             onChange={handleGenderChange}
                         >
                             {options.map((option) => (
@@ -113,10 +123,12 @@ const EditUser = (props) => {
                         </Select>
                     </FormControl>
             </div>
-            <FormControl  style={{ marginTop:"10px"}}>
+            <FormControl  sx={{minWidth: 193, marginTop:"10px" }}>
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Status</InputLabel>
                          <Select
                             value={status}
+                            label="Status"
+                            error={!status}
                             onChange={handleStatusChange}
                         >
                             {statusOptions.map((option) => (
@@ -127,12 +139,14 @@ const EditUser = (props) => {
                         </Select>
                     </FormControl>
             <Box style={style.close}>
-                <Button onClick={handleClose} autoFocus>
+                <div style={{marginTop:"5px"}}>
+                <Button style={{marginRight:"5px"}} onClick={handleClose} autoFocus>
                     Close
                 </Button>
                 <Button onClick={() => handleEditUser(user.id)} autoFocus>
                     Edit
                 </Button>
+                </div>
             </Box>
         </Box>
       </Modal>

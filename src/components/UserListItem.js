@@ -24,7 +24,6 @@ const style = {
         transform: 'translate(-50%, -50%)',
         maxWidth: 500,
         bgcolor: 'background.paper',
-        //border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     },
@@ -37,6 +36,12 @@ const style = {
         fontWeight: "bold", 
         textAlign:"center",
         margin:"5px",
+        overflow:"hidden",
+        textOverflow:"ellipsis",
+        whiteSpace:"nowrap"
+    },
+    email:{
+        fontSize: 14, 
         overflow:"hidden",
         textOverflow:"ellipsis",
         whiteSpace:"nowrap"
@@ -96,7 +101,7 @@ const UserListItem = (props) => {
                     <Typography style={style.name} color="black" gutterBottom>
                         {user.name}
                     </Typography>
-                    <Typography sx={{ fontSize: 14, overflow:"hidden",textOverflow:"ellipsis",whiteSpace:"nowrap" }} component="div">
+                    <Typography style={style.email} component="div">
                         {user.email}
                     </Typography>
                     <div style={{display: "flex", justifyContent:"center"}}>

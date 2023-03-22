@@ -20,7 +20,6 @@ const style = {
         transform: 'translate(-50%, -50%)',
         maxWidth: 300,
         bgcolor: 'background.paper',
-        //border: '2px solid #000',
         boxShadow: 24,
         p: 4,
     },
@@ -99,6 +98,7 @@ const AddUser = (props) => {
                     onChange={(e) => setName(e.target.value)}
                     label="Name" 
                     variant="outlined"
+                    error={!name}
                 />
             </div>
             <div>
@@ -108,6 +108,7 @@ const AddUser = (props) => {
                     onChange={(e) => setEmail(e.target.value)}
                     label="Email" 
                     variant="outlined"
+                    error={!email}
                 />
             </div>
             <div>
@@ -116,6 +117,7 @@ const AddUser = (props) => {
                         <Select
                             value={gender}
                             label="Gender"
+                            error={!gender}
                             onChange={handleGenderChange}
                         >
                             {options.map((option) => (
@@ -130,6 +132,7 @@ const AddUser = (props) => {
                         <InputLabel style={{ minWidth:"148px"}} id="demo-simple-select-label">Status</InputLabel>
                          <Select
                             value={status}
+                            error={!status}
                             label="Status"
                             onChange={handleStatusChange}
                         >

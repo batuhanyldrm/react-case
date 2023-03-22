@@ -32,11 +32,12 @@ const TodosListItem = (props) => {
             open={open}
             handleClose={handleClose}
         />
-        <Button style={{marginBottom:"15px"}}
-            variant='contained' 
-            onClick={() => setOpen(true)}
+        <Button
+            style={{marginBottom:"15px"}}
+            variant='outlined'
+            href='/users' 
         >
-            Add Todo
+            Back To Users
         </Button>
         <div style={{display:"flex", justifyContent:"center"}}>
         <TableContainer sx={{ maxWidth: 900 }} component={Paper}>
@@ -44,7 +45,6 @@ const TodosListItem = (props) => {
             <TableHead>
             <TableRow>
                 <TableCell style={{fontWeight:"bold"}}>Title</TableCell>
-                {/* <TableCell>Due On</TableCell> */}
                 <TableCell align='center' style={{fontWeight:"bold"}}>Status</TableCell>
             </TableRow>
             </TableHead>
@@ -54,13 +54,20 @@ const TodosListItem = (props) => {
                 sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                 >
                 <TableCell component="th" scope="row">{todo.title}</TableCell>
-                {/* <TableCell component="th" scope="row">{todo.due_on}</TableCell> */}
                 <TableCell component="th" scope="row" align='center'>{todo.status}</TableCell>
                 </TableRow>
                 ))}
             </TableBody>
         </Table>
         </TableContainer>
+        <div>
+        <Button style={{marginLeft:"15px"}}
+            variant='contained' 
+            onClick={() => setOpen(true)}
+        >
+            Add Todo
+        </Button>
+        </div>
         </div>
     </>
   )

@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -17,6 +17,7 @@ function LoginPage(props){
     const [showPassword, setShowPassword] = useState(false);
     const [loginName, setLoginName] = useState("");
     const [loginPassword, setLoginPassword] = useState("")
+    const [isPassAcceptable, setIsPassAcceptable] = useState(true);
 
     const handleClickShowPassword = () => setShowPassword((show) => !show);
 
@@ -24,7 +25,21 @@ function LoginPage(props){
         event.preventDefault();
     };
 
+    const rePass = new RegExp(
+        /^(?=.*?[a-z])(?=.*?[0-9]).{3,}$/
+    );
 
+
+    const handlePass = (event) => {
+        setLoginPassword(event.target.value);
+        if (!rePass.test(event.target.value)) {
+            setIsPassAcceptable(false);
+        } else {
+            setIsPassAcceptable(true);
+        }
+      };
+
+    
     localStorage.getItem(loginName);
 
     const userLogin = async () => {
@@ -33,12 +48,23 @@ function LoginPage(props){
             password: loginPassword
         }
         try {
-            localStorage.setItem(loginName, "9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc");
-            await loginUser(data)
+            if(isPassAcceptable){
+                localStorage.setItem(loginName, "9cd8b6cbee0221e89b00ceed034662762608538af499a0763f2db7acdb8501dc");
+                await loginUser(data)
+            }
+            else{
+                console.log("Wrong pass")
+            }
+            
         } catch (error) {
             console.log(error,"catch error")
         }
     }
+
+    useEffect(() => {
+      setIsPassAcceptable(false)
+    }, [])
+    
 
   return (
     <div style={{display:"flex", justifyContent:"center", marginTop:"15%"}}>
@@ -62,7 +88,8 @@ function LoginPage(props){
             <OutlinedInput style={{ width:"380px",marginBottom:"10px",}}
                 id="outlined-adornment-password"
                 value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
+                onChange={(e) => handlePass(e)}
+                error={!isPassAcceptable}
                 type={showPassword ? 'text' : 'password'}
                 endAdornment={
                 <InputAdornment position="end">
@@ -84,7 +111,7 @@ function LoginPage(props){
             href='/users'
             style={{width:"380px"}} 
             disableElevation
-            disabled={loginName.length < 3 || loginPassword.length < 3}
+            disabled={loginName.length < 3 || !isPassAcceptable}
             variant="contained"
             onClick={() => userLogin()}
             >
