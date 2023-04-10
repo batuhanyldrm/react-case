@@ -48,7 +48,7 @@ function UsersList (props) {
       let rawData = currentSearch;
   
       let trimmedRawData = rawData.trim();
-      let lowerCasedData = trimmedRawData.toLowerCase();
+      let lowerCasedData = trimmedRawData
     
       let standartizedCurrentSearch = lowerCasedData
       setCurrentSearch(standartizedCurrentSearch);
