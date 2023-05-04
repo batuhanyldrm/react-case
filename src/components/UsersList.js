@@ -8,23 +8,29 @@ import Pagination from '@mui/material/Pagination';
 import Stack from '@mui/material/Stack';
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
+import { makeStyles } from '@mui/styles';
 
-const style = {
-  list: {
-   marginLeft:"13%",
-   columnCount: "2"
-  },
-  pagination:{
-    display: "flex",
-    justifyContent:"center",
-    marginTop:"5%"
-
-  }
-};
+  const useStyles = makeStyles((theme) => ({
+    list: {
+      marginLeft:"13%",
+      columnCount: "2"
+    },
+    pagination:{
+      display: "flex",
+      justifyContent:"center",
+      marginTop:"5%"
+    },
+    button:{
+      maxWidth:"200px",
+      maxHeight:"50px", 
+      marginTop:"10px"
+    }
+  }));
 
 function UsersList (props) {
 
     const{fetchUser, users} = props
+    const classes = useStyles();
 
     const [addUser, setaddUser] = useState(false)
     const [pageNumber,setPageNumber] = useState(1);
@@ -115,7 +121,7 @@ function UsersList (props) {
               style={{
                 display: currentSearch.length > 0 ? "block" : "none",
               }}
-              onClick = {() => deleteCurrentSearch()}
+              onClick = {deleteCurrentSearch}
             >
               <ClearIcon
                 htmlColor="#2F455C"
@@ -130,11 +136,11 @@ function UsersList (props) {
       }}
       label="Search"
     />
-    <Button variant="contained" style={{maxWidth:"200px", maxHeight:"50px", marginTop:"10px"}} onClick={() => setaddUser(true)}>ADD USER</Button>
+    <Button variant="contained" className={classes.button} onClick={() => setaddUser(true)}>ADD USER</Button>
       
     </div>
       <div className='row'>
-      <section style={style.list} className="col-md-6">
+      <section className={classes.list}>
 
         {lastFilteredUsers &&
           lastFilteredUsers.map((user, index) => (
@@ -153,7 +159,7 @@ function UsersList (props) {
 
         <Pagination
         id="list-users-pagination"
-        style={style.pagination}
+        className={classes.pagination}
         page={pageNumber}
         onChange={(event, value) => handleShownUsers(value)}
         count={totalPageNumber}

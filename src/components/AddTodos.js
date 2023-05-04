@@ -107,7 +107,7 @@ const AddTodos = (props) => {
             <Button onClick={handleClose} autoFocus>
                 Close
             </Button>
-            <Button onClick={() => handleAddUserTodos()} autoFocus>
+            <Button onClick={handleAddUserTodos} autoFocus>
                 Add
             </Button>
             </div>

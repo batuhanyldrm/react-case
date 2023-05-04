@@ -148,7 +148,7 @@ const AddUser = (props) => {
                 <Button style={{marginRight:"5px"}} onClick={handleClose} autoFocus>
                     Close
                 </Button>
-                <Button onClick={() => handleAddUser()} autoFocus>
+                <Button onClick={handleAddUser} autoFocus>
                     Add
                 </Button>
                 </div>

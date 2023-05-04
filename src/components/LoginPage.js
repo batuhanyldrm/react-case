@@ -81,7 +81,7 @@ function LoginPage(props){
             />
         </div>
 
-        <div style={{ width:"380px",marginBottom:"10px",}}>
+        <div style={{ width:"380px",marginBottom:"10px"}}>
 
         <FormControl variant="outlined">
             <InputLabel htmlFor="outlined-adornment-password">Password</InputLabel>
@@ -113,7 +113,7 @@ function LoginPage(props){
             disableElevation
             disabled={loginName.length < 3 || !isPassAcceptable}
             variant="contained"
-            onClick={() => userLogin()}
+            onClick={userLogin}
             >
             Login
         </Button>
